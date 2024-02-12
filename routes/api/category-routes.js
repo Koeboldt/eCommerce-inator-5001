@@ -8,7 +8,7 @@ const { Category, Product } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const categoryData = await Category.findAll({
-      include: [{ model: Category },{ model: Product}],
+      include: [{model: Product}],
     });
     res.status(200).json(categoryData);
   } catch (err) {
@@ -20,11 +20,11 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const categoryData = await Category.findByPk(req.params.id, {
-      include: [{ model: Category },{ model: Product}],
+      include: [{ model: Product}],
     });
 
     if (!categoryData) {
-      res.status(404).json({ message: 'No library card found with that id!' });
+      res.status(404).json({ message: '' });
       return;
     }
 
